@@ -10,23 +10,36 @@ def insertF(pos, value):
         li.append(value)
     else:
         li.insert(0,value)
-    print('list: ', li)
+    #print('list: ', li)
 
 def eraseF(pos, value):
     cnt = 0
     if pos == 0:
-        for i in range(len(li)):        # range(0,1,2,3,...,len-1) 로 고정, list값을 지우면, i랑 len을 재설정해야하므로 while문 이용필요
-            print(i)
+        i = 0
+        while i < len(li):
             if li[i]>=value:
                 del li[i]
                 cnt+=1
                 if cnt>=3: break
+            else:
+                i+=1
+
+    else:
+        i = len(li) - 1
+        while i>=0 and cnt<3:
+            if li[i]>=value:
+                del li[i]
+                cnt+=1
+            i-=1
+
+    #print('list: ', li)
 
 def sortF(value):
-    pass
+    li.sort(key=lambda x : (abs(value-x), x))   # <
+    #print(li)
 
 def printF(pos):
-    if pos==1:
+    if pos==0:
         #for x in li:
         #    print(x, end=' ')
         #print()
@@ -41,7 +54,7 @@ for _ in range(int(input())):
     #cmd = list(map(int, cmd))   # [int(cmd[0]), int(cmd[1]), .. , int(cmd[len-1])]
 
     cmd = list(map(int, input().split()))
-    print('cmd: ', *cmd)
+    #print('cmd: ', *cmd)
     if cmd[0]==1: insertF(cmd[1], cmd[2])
     elif cmd[0]==2: eraseF(*cmd[1:])
     elif cmd[0]==3: sortF(cmd[1])
