@@ -18,3 +18,4 @@ for i in range(len(text)):
     if i>=K: key -= base[text[i-K]]
     if i>=K-1: htab[key]+=1
 print(max(htab.values()))
+
