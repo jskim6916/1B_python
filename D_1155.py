@@ -28,3 +28,4 @@ for i in range(len(text)):
     if i>=K-1: htab[tuple(key)]+=1
 
 print(max(htab.values()))
+
